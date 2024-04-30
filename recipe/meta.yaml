@@ -29,12 +29,11 @@ requirements:
     - cmake >=3.26
     - wheel
     - cython >=3.0
-    - numpy >=1.21
+    - numpy >=1.21,<=1.26
     - pip
   run:
     - python
     - cmake >=3.26
-    - numpydoc >=1.5
     - scipy >=1.8
     - matplotlib-base >=3
     - pillow >=8.1
