@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.6.4" %}
+{% set version = "1.6.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: a8bc8370f80f48ce5f56346d905209b5d29037073a2cd62a326ed660d15df5a8
+  sha256: 3fdb825068133c9b2e48a4dec6821b74e61cd44007b3f0ca9fefab8bf24fa8a7
   patches:
     - patches/0001-Add-PyMODINIT_FUNC.patch
 
