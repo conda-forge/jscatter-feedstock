@@ -23,6 +23,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
+    # gfortran called from setup.py but not currently used to build an extension
+    - gfortran  # [win]
   host:
     - python
     - setuptools >=67.0
