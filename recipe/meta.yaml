@@ -10,7 +10,7 @@ source:
   sha256: 3c7eaa8240d713a17768aa4bd435c0349606af6dc7ef04c3657c4f67c5481c5b
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<39]
   script:
     # Remove compiled *.pyd files
     - {{ PYTHON }} -c "import pathlib; [p.unlink() for p in pathlib.Path('.').rglob('*.pyd')]"
@@ -29,15 +29,15 @@ requirements:
     - cmake >=3.26
     - wheel
     - cython >=3.0
-    - numpy >=1.21,<=1.26
+    - numpy >=1.21,!=1.26.1,!=1.26.2,!=1.26.3
     - pip
   run:
     - python
-    - cmake >=3.26
-    - scipy >=1.8
+    - scipy >=1.10
     - matplotlib-base >=3
     - pillow >=8.1
     - mdanalysis >=2.4.0
+    - netcdf4
     - cython
     - fabio
     - pdb2pqr
