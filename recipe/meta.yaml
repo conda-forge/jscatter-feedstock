@@ -8,8 +8,6 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
   sha256: 3c7eaa8240d713a17768aa4bd435c0349606af6dc7ef04c3657c4f67c5481c5b
-  patches:
-    - patches/0001-Add-PyMODINIT_FUNC.patch
 
 build:
   skip: true  # [py<38]
