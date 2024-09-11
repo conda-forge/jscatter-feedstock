@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.6.4.2" %}
+{% set version = "1.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: ca756349250e2538209648a23886c9aa249a47e706fee6d150e45d871f2027a4
-  patches:
-    - patches/0001-Add-PyMODINIT_FUNC.patch
+  sha256: 3c7eaa8240d713a17768aa4bd435c0349606af6dc7ef04c3657c4f67c5481c5b
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<39]
   script:
-    # Remove compiled *.pyd files
-    - {{ PYTHON }} -c "import pathlib; [p.unlink() for p in pathlib.Path('.').rglob('*.pyd')]"
+    # Remove cython generated files to re-generate them for numpy v1
+    - {{ PYTHON }} -c "import pathlib; [p.with_suffix('.c').unlink() for p in pathlib.Path('.').rglob('*.pyx')]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -31,15 +29,15 @@ requirements:
     - cmake >=3.26
     - wheel
     - cython >=3.0
-    - numpy >=1.21,<=1.26
+    - numpy
     - pip
   run:
     - python
-    - cmake >=3.26
-    - scipy >=1.8
+    - scipy >=1.10
     - matplotlib-base >=3
     - pillow >=8.1
     - mdanalysis >=2.4.0
+    - netcdf4
     - cython
     - fabio
     - pdb2pqr
@@ -51,6 +49,10 @@ requirements:
 test:
   imports:
     - jscatter
+    # Compiled extensions
+    - jscatter.libs.cubature._cubature
+    - jscatter.libs.cubature._test_integrands
+    - jscatter.libs.surface
 
 about:
   summary: Combines dataArrays with attributes for fitting plotting and analysis including models for Xray and neutron scattering
