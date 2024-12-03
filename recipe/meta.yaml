@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
   sha256: 3c7eaa8240d713a17768aa4bd435c0349606af6dc7ef04c3657c4f67c5481c5b
 
 build:
@@ -15,7 +15,7 @@ build:
     # Remove cython generated files to re-generate them for numpy v1
     - {{ PYTHON }} -c "import pathlib; [p.with_suffix('.c').unlink() for p in pathlib.Path('.').rglob('*.pyx')]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -44,7 +44,6 @@ requirements:
     - requests
     - nglview
     - emcee
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
