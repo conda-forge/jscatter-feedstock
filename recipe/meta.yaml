@@ -33,6 +33,7 @@ requirements:
     - pip
   run:
     - python
+    - numpy >= 1.21
     - scipy >=1.10
     - matplotlib-base >=3
     - pillow >=8.1
