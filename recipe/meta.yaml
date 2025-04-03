@@ -34,7 +34,7 @@ requirements:
   run:
     - python
     - scipy >=1.10
-    - matplotlib-base >=3
+    - matplotlib-base >=3.7
     - pillow >=8.1
     - mdanalysis >=2.4.0
     - netcdf4
