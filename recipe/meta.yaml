@@ -15,7 +15,7 @@ build:
     # Remove cython generated files to re-generate them for numpy v1
     - {{ PYTHON }} -c "import pathlib; [p.with_suffix('.c').unlink() for p in pathlib.Path('.').rglob('*.pyx')]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
