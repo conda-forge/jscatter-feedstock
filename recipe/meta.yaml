@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.7.5" %}
+{% set version = "1.8.0.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: d03d68c0f44e36c84790da430bf9933f433640adfac2b7f248966d2a490d3308
+  sha256: 35469da180e0a0dc983725e85ce0ea3e669699c46eb7abae58c5570f240ceab0
 
 build:
   skip: true  # [py<39]
@@ -15,7 +15,7 @@ build:
     # Remove cython generated files to re-generate them for numpy v1
     - {{ PYTHON }} -c "import pathlib; [p.with_suffix('.c').unlink() for p in pathlib.Path('.').rglob('*.pyx')]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   build:
