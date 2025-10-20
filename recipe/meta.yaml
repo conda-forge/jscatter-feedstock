@@ -44,7 +44,6 @@ requirements:
     - requests
     - nglview
     - emcee
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
