@@ -22,6 +22,8 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('fortran') }}
   host:
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - python
     - setuptools >=67.0
     - cmake >=3.30.9
@@ -32,6 +34,7 @@ requirements:
     - pip
   run:
     - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - python
     - numpy >=2
     - scipy >=1.15.0
