@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.9.0.3" %}
+{% set version = "1.9.0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: 08ac69818092edfcefb80ca2e2e59003e8c75e9ca1faaf5e3b6811cee4f2768a
+  sha256: 5d116be5d6698d001de182e18aebcb198895fcff30425344a58e7e7f80d545a6
 
 build:
   script:
