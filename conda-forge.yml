@@ -1,4 +1,4 @@
-  provider: 
+provider: 
     osx_arm64: default 
     osx_64: false
 github:
