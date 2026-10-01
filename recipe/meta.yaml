@@ -26,7 +26,8 @@ requirements:
    - {{ compiler('m2w64_fortran') }}  # [win]
 
   host:
-    - libgomp     
+    - llvm-openmp  # [osx] 
+    - libgomp      # [linux or win]
     - python
     - setuptools >=67.0
     - cmake >=3.30.9
@@ -36,7 +37,8 @@ requirements:
     - numpy >=2
     - pip
   run:
-    - libgomp     
+    - llvm-openmp  # [osx] 
+    - libgomp      # [linux or win]
     - python
     - numpy >=2
     - scipy >=1.15.0
