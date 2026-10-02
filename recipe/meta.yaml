@@ -8,26 +8,27 @@ package:
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
   sha256: 5d116be5d6698d001de182e18aebcb198895fcff30425344a58e7e7f80d545a6
+  patches:
+    # Remove explicit Windows link libraries that break the build
+    - remove-windows-link-libraries.patch
 
 build:
   script:
     # Remove cython generated files to re-generate them with the version of numpy used to build
     - {{ PYTHON }} -c "import pathlib; [p.with_suffix('.c').unlink() for p in pathlib.Path('.').rglob('*.pyx')]"
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
-   - {{ compiler('c') }}          # [not win] 
-   - {{ stdlib("c") }}            # [not win] 
-   - {{ compiler('fortran') }}    # [not win] 
-   - {{ compiler('m2w64_c') }}    # [win] 
-   - {{ stdlib('m2w64_c') }}      # [win] 
-   - {{ compiler('m2w64_fortran') }}  # [win]
+   - {{ compiler('c') }}
+   - {{ stdlib("c") }}
+   - {{ compiler('fortran') }}
 
   host:
-    - llvm-openmp  # [osx] 
-    - libgomp      # [linux or win]
+    - llvm-openmp  # [osx]
+    - llvm-openmp-fortran # [win]
+    - libgomp      # [linux]
     - python
     - setuptools >=67.0
     - cmake >=3.30.9
@@ -37,8 +38,9 @@ requirements:
     - numpy >=2
     - pip
   run:
-    - llvm-openmp  # [osx] 
-    - libgomp      # [linux or win]
+    - llvm-openmp  # [osx]
+    - llvm-openmp-fortran # [win]
+    - libgomp      # [linux]
     - python
     - numpy >=2
     - scipy >=1.15.0
