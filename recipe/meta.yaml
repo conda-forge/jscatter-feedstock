@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.9.0.4" %}
+{% set version = "1.9.0.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: 5d116be5d6698d001de182e18aebcb198895fcff30425344a58e7e7f80d545a6
+  sha256: 8d28d37f221a1683461feee752f1c09cb2e2920f55c111d856d671ef2be50af5
 
 build:
   script:
@@ -18,12 +18,12 @@ build:
 
 requirements:
   build:
-   - {{ compiler('c') }}          # [not win] 
-   - {{ stdlib("c") }}            # [not win] 
-   - {{ compiler('fortran') }}    # [not win] 
-   - {{ compiler('m2w64_c') }}    # [win] 
-   - {{ stdlib('m2w64_c') }}      # [win] 
-   - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ compiler('c') }}        # [not win] 
+    - {{ stdlib("c") }}          # [not win] 
+    - {{ compiler('fortran') }}  # [not win] 
+    - {{ compiler('m2w64_c') }}        # [win] 
+    - {{ stdlib('m2w64_c') }}          # [win] 
+    - {{ compiler('m2w64_fortran') }}  # [win]
 
   host:
     - llvm-openmp  # [osx] 
