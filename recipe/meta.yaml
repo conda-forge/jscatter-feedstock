@@ -21,16 +21,13 @@ build:
 
 requirements:
   build:
-   - {{ compiler('c') }}          # [not win] 
-   - {{ stdlib("c") }}            # [not win] 
-   - {{ compiler('fortran') }}    # [not win] 
-   - {{ compiler('m2w64_c') }}    # [win] 
-   - {{ stdlib('m2w64_c') }}      # [win] 
-   - {{ compiler('m2w64_fortran') }}  # [win]
+   - {{ compiler('c') }}
+   - {{ stdlib("c") }}
+   - {{ compiler('fortran') }}
 
   host:
-    - llvm-openmp  # [osx] 
-    - libgomp      # [linux or win]
+    - llvm-openmp  # [osx or win]
+    - libgomp      # [linux]
     - python
     - setuptools >=67.0
     - cmake >=3.30.9
@@ -40,8 +37,8 @@ requirements:
     - numpy >=2
     - pip
   run:
-    - llvm-openmp  # [osx] 
-    - libgomp      # [linux or win]
+    - llvm-openmp  # [osx or win]
+    - libgomp      # [linux]
     - python
     - numpy >=2
     - scipy >=1.15.0
