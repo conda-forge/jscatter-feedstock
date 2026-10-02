@@ -1,5 +1,5 @@
 {% set name = "jscatter" %}
-{% set version = "1.9.0.3" %}
+{% set version = "1.9.0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/jscatter-{{ version }}.tar.gz
-  sha256: 08ac69818092edfcefb80ca2e2e59003e8c75e9ca1faaf5e3b6811cee4f2768a
+  sha256: 5d116be5d6698d001de182e18aebcb198895fcff30425344a58e7e7f80d545a6
 
 build:
   script:
@@ -18,12 +18,16 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
-    - {{ compiler('fortran') }}
+   - {{ compiler('c') }}          # [not win] 
+   - {{ stdlib("c") }}            # [not win] 
+   - {{ compiler('fortran') }}    # [not win] 
+   - {{ compiler('m2w64_c') }}    # [win] 
+   - {{ stdlib('m2w64_c') }}      # [win] 
+   - {{ compiler('m2w64_fortran') }}  # [win]
+
   host:
-    - llvm-openmp  # [osx]
-    - libgomp      # [linux]
+    - llvm-openmp  # [osx] 
+    - libgomp      # [linux or win]
     - python
     - setuptools >=67.0
     - cmake >=3.30.9
@@ -33,8 +37,8 @@ requirements:
     - numpy >=2
     - pip
   run:
-    - llvm-openmp  # [osx]
-    - libgomp      # [linux]
+    - llvm-openmp  # [osx] 
+    - libgomp      # [linux or win]
     - python
     - numpy >=2
     - scipy >=1.15.0
@@ -56,6 +60,7 @@ test:
     - jscatter.libs.cubature._cubature
     - jscatter.libs.cubature._test_integrands
     - jscatter.libs.surface
+    - jscatter.libs.fscatter
 
 about:
   summary: Combines dataArrays with attributes for fitting plotting and analysis including models for Xray and neutron scattering
